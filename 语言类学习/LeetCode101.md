@@ -92,3 +92,104 @@ public:
 
 
 **135 糖果问题(Hard)**
+
+```C++
+class Solution {
+public:
+    int candy(vector<int>& ratings) {
+       size_t size = ratings.size();
+       vector<int> candies(size,1);
+       
+       for(int i=1;i<size;i++)
+       {
+           if(ratings[i]>ratings[i-1])
+            candies[i] = candies[i-1] +1;
+       }
+
+       for(int i=size-2;i>=0;i--)
+       {
+           if(ratings[i]>ratings[i+1] )
+             candies[i] =max(candies[i+1] + 1,candies[i]); 
+       }
+
+       return accumulate(candies.begin(),candies.end(),0);
+    }
+};
+```
+
+
+
+## 2.3 区间问题
+
+**435 不相邻的区间**
+
+要求结尾最小
+
+```C++
+class Solution {
+public:
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+           if(intervals.size()<=1) return 0;
+
+           sort(intervals.begin(),intervals.end(),[](const vector<int>&lhs,const vector<int>& rhs)->bool
+           {
+               return lhs[1]<rhs[1];
+           });  
+           
+           size_t l = 0,r = 1;
+           int cnt = 0;
+           while(r<intervals.size())
+           {
+               if(intervals[l][1]>intervals[r][0])
+               {
+                   cnt++;   
+               }else{
+                   l = r;
+               }
+               ++r;
+           }
+           return cnt;
+    }
+};
+```
+
+
+
+## 2.4 练习
+
+605 种花问题
+
+```
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+      if(n>=(flowered.size()+1)/2)
+         return false;
+      if(n==0) return true;
+      size_t size = flowerbed.size();
+      size_t start = 0,end=1,max_cnt=0;
+      while(end<size)
+      {
+          if(flowered[end]==1)
+          {
+             if(start==0)
+                   
+               
+          }
+      }
+      
+    }
+};
+```
+
+
+
+452 
+
+763 
+
+122
+
+406
+
+665
